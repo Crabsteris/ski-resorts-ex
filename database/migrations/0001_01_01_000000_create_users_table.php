@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('role')->default('user'); // ieviesu roles, un pec noklusejuma sis role ir user, jeb lietotajs
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
