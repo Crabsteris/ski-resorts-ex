@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ResortController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,6 +11,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [ResortController::class, 'index'])
+    ->name('resorts.index');
+
+Route::get('/resorts/{resort}', [ResortController::class, 'show'])
+    ->name('resorts.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
