@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuditLog extends Model
 {
-    //
+    //ex
+    protected $fillable = [
+        'user_id',
+        'action',
+        'description'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
