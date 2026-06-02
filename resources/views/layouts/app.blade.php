@@ -30,7 +30,10 @@
                 </a>
 
             @else
-
+                <a href="{{ route('profile') }}">
+                    Profile
+                </a>
+                
                 <a href="{{ route('login') }}">
                     Login
                 </a>
@@ -38,7 +41,10 @@
                 <a href="{{ route('register') }}">
                     Register
                 </a>
-
+            
+                <a href="{{ route('wishlist.index') }}">
+                    Wishlist
+                </a>
             @endauth
 
         </div>
