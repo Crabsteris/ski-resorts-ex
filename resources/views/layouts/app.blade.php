@@ -7,43 +7,46 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100">
+<body class="bg-slate-50 antialiased"> {{-- Nomainīts uz nedaudz maigāku fonu --}}
 
-<nav class="bg-blue-900 text-white">
-    <div class="container mx-auto px-4 py-4 flex justify-between">
+<nav class="bg-slate-900 border-b border-slate-800 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
 
+        {{-- Logotips / Mājaslapas nosaukums --}}
         <a href="{{ route('resorts.index') }}"
-           class="font-bold text-xl">
-            Ski Resorts
+           class="font-extrabold text-xl text-white hover:text-indigo-400 transition-colors duration-200 tracking-tight">
+            ❄️ Ski Resorts
         </a>
 
-        <div class="space-x-4">
+        {{-- Navigācijas saites --}}
+        <div class="flex items-center space-x-6 text-sm font-medium">
 
             @auth
-
-                <span>
-                    {{ Auth::user()->name }}
+                {{-- Šo redz tikai IELOGOJUSIES lietotāji --}}
+                <span class="text-slate-400 border-r border-slate-700 pr-4">
+                    Sveiki, <strong class="text-white font-semibold">{{ Auth::user()->name }}</strong>
                 </span>
 
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('wishlist.index') }}" class="text-slate-300 hover:text-indigo-400 transition-colors duration-200">
+                    Wishlist
+                </a>
+
+                <a href="{{ route('profile') }}" class="text-slate-300 hover:text-indigo-400 transition-colors duration-200">
+                    Profile
+                </a>
+
+                <a href="{{ route('dashboard') }}" class="bg-slate-800 text-white px-3 py-1.5 rounded-md hover:bg-indigo-600 transition-all duration-200">
                     Dashboard
                 </a>
 
             @else
-                <a href="{{ route('profile') }}">
-                    Profile
-                </a>
-                
-                <a href="{{ route('login') }}">
+                {{-- Šo redz VIESI (neielogojušies lietotāji) --}}
+                <a href="{{ route('login') }}" class="text-slate-300 hover:text-indigo-400 transition-colors duration-200">
                     Login
                 </a>
 
-                <a href="{{ route('register') }}">
+                <a href="{{ route('register') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-200 shadow-sm">
                     Register
-                </a>
-            
-                <a href="{{ route('wishlist.index') }}">
-                    Wishlist
                 </a>
             @endauth
 
@@ -51,7 +54,8 @@
     </div>
 </nav>
 
-<main class="container mx-auto px-4 py-8">
+{{-- Galvenais saturs --}}
+<main>
     @yield('content')
 </main>
 
