@@ -22,7 +22,7 @@
                 
                 <div class="flex gap-4">
                     {{-- Šeit vari ielikt pogu uz kūrorta izveides formu, kad tev tāda būs --}}
-                    <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors">
+                    <a href="{{ route('admin.resorts.index') }}" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors">
                         + Pievienot jaunu kūrortu
                     </a>
                 </div>

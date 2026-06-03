@@ -7,12 +7,11 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-slate-50 antialiased"> {{-- Nomainīts uz nedaudz maigāku fonu --}}
+<body class="bg-slate-50 antialiased"> 
 
 <nav class="bg-slate-900 border-b border-slate-800 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
 
-        {{-- Logotips / Mājaslapas nosaukums --}}
         <a href="{{ route('resorts.index') }}"
            class="font-extrabold text-xl text-white hover:text-indigo-400 transition-colors duration-200 tracking-tight">
             ❄️ Ski Resorts
@@ -22,9 +21,8 @@
         <div class="flex items-center space-x-6 text-sm font-medium">
 
             @auth
-                {{-- Šo redz tikai IELOGOJUSIES lietotāji --}}
                 <span class="text-slate-400 border-r border-slate-700 pr-4">
-                    Sveiki, <strong class="text-white font-semibold">{{ Auth::user()->name }}</strong>
+                    Sveiks, <strong class="text-white font-semibold">{{ Auth::user()->name }}</strong>
                 </span>
 
                 <a href="{{ route('wishlist.index') }}" class="text-slate-300 hover:text-indigo-400 transition-colors duration-200">
@@ -35,12 +33,25 @@
                     Profile
                 </a>
 
-                <a href="{{ route('dashboard') }}" class="bg-slate-800 text-white px-3 py-1.5 rounded-md hover:bg-indigo-600 transition-all duration-200">
+                <a href="{{ route('dashboard') }}" class="text-slate-300 hover:text-indigo-400 transition-colors duration-200">
                     Dashboard
                 </a>
 
+                @if(auth()->user()->role === 'admin')
+                <a href="{{ route('admin.resorts.index') }}" class="text-slate-300 hover:text-yellow-400 transition-colors duration-200">
+                    Admin
+                </a>
+                @endif
+                
+                <form action="{{ route('logout') }}" method="POST" class="inline m-0 p-0">
+                    @csrf
+                    <button type="submit" 
+                            class="bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm">
+                        Log Out
+                    </button>
+                </form>
+
             @else
-                {{-- Šo redz VIESI (neielogojušies lietotāji) --}}
                 <a href="{{ route('login') }}" class="text-slate-300 hover:text-indigo-400 transition-colors duration-200">
                     Login
                 </a>
@@ -54,7 +65,7 @@
     </div>
 </nav>
 
-{{-- Galvenais saturs --}}
+
 <main>
     @yield('content')
 </main>
