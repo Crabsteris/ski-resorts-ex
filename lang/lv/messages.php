@@ -107,4 +107,16 @@ return [
     'deleted_resorts_description' => 'Atjauno kūrortus, kas iepriekš tika dzēsti.',
     'restore' => 'Atjaunot',
     'no_deleted_resorts' => 'Nav dzēstu kūrortu.',
-];
+
+    'search_resort' => 'Meklēt kūrortu',
+    'search_resort_placeholder' => 'Meklēt pēc kūrorta nosaukuma...',
+    'all_countries' => 'Visas valstis',
+    'filter' => 'Filtrēt',
+    'clear' => 'Notīrīt',
+    'no_resorts_match' => 'Nav kūrortu, kas atbilst meklēšanai vai filtram.',
+
+
+
+
+
+    ];

@@ -107,4 +107,17 @@ return [
     'deleted_resorts_description' => 'Restore resorts that were previously deleted.',
     'restore' => 'Restore',
     'no_deleted_resorts' => 'No deleted resorts.',
-];
+
+    'search_resort' => 'Search resort',
+    'search_resort_placeholder' => 'Search by resort name...',
+    'all_countries' => 'All Countries',
+    'filter' => 'Filter',
+    'clear' => 'Clear',
+    'no_resorts_match' => 'No resorts match your search or filter.',
+
+
+
+
+
+
+    ];

@@ -14,7 +14,7 @@
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
-            <form action="{{ route('admin.resorts.update', $resort->id) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+            <form action="{{ route('admin.resorts.update', $resort) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
                 @csrf
                 @method('PUT')
 
