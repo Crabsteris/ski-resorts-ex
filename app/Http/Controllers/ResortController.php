@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Resort;
 
 class ResortController extends Controller
 {
     public function index()
     {
-        $resorts = Resort::with('country')->get();
+        $resorts = Resort::select('id', 'country_id', 'name', 'description', 'image')
+            ->with('country:id,name')
+            ->latest()
+            ->paginate(9);
 
         return view('resorts.index', compact('resorts'));
     }
@@ -17,8 +19,8 @@ class ResortController extends Controller
     public function show(Resort $resort)
     {
         $resort->load([
-            'country',
-            'reviews.user'
+            'country:id,name',
+            'reviews.user:id,name'
         ]);
 
         return view('resorts.show', compact('resort'));

@@ -14,7 +14,7 @@
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
-            <form action="{{ route('admin.resorts.update', $resort->id) }}" method="POST" class="space-y-5">
+            <form action="{{ route('admin.resorts.update', $resort->id) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
                 @csrf
                 @method('PUT')
 
@@ -49,7 +49,24 @@
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Resort Image</label>
 
+                    @if($resort->image)
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/' . $resort->image) }}"
+                                alt="{{ $resort->name }}"
+                                class="h-32 w-full object-cover rounded-xl border">
+                        </div>
+                    @endif
+
+                    <input type="file" name="image" accept="image/*"
+                        class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 border border-slate-300 rounded-xl p-1.5 bg-white">
+
+                    @error('image')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
                 <div class="flex items-center space-x-3 pt-2">
                     <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors duration-200 text-sm shadow-sm">
                         Update Resort

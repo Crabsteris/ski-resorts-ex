@@ -2,21 +2,27 @@
 
 @section('content')
 <div class="bg-slate-50 min-h-screen py-10">
-    <div class="max-w-4xl mx-auto px-4">
 
-        {{-- Galvenā kūrorta informācijas kartiņa --}}
+    @if($resort->image)
+        <div class="mb-6 overflow-hidden rounded-xl shadow-inner border border-slate-100">
+            <img src="{{ asset($resort->image) }}" 
+                    alt="{{ $resort->name }}" 
+                    class="w-full h-64 sm:h-96 object-cover">
+        </div>  
+    @endif
+    <div class="max-w-4xl mx-auto px-4">
+     
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-8">
             <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
                 <div>
                     <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">
-                        📍 {{ $resort->country->name ?? 'Nav valsts' }}
+                        {{ $resort->country->name ?? 'Nav valsts' }}
                     </span>
                     <h1 class="text-3xl md:text-4xl font-extrabold text-slate-950 mt-1">
                         {{ $resort->name }}
                     </h1>
                 </div>
 
-                {{-- Wishlist poga --}}
                 @auth
                     <form action="{{ route('wishlist.store') }}" method="POST" class="shrink-0">
                         @csrf
@@ -33,13 +39,12 @@
             </p>
         </div>
 
-        {{-- Atsauksmju sekcija --}}
         <div class="border-t border-slate-200 pt-8">
             <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                 Reviews ({{ $resort->reviews->count() }})
             </h2>
 
-            {{-- Jaunas atsauksmes pievienošanas forma --}}
+            
             @auth
                 <div class="bg-slate-100 rounded-2xl p-6 mb-8 border border-slate-200">
                     <h3 class="text-lg font-bold text-slate-900 mb-4">Write a Review</h3>
@@ -74,7 +79,6 @@
                 </div>
             @endauth
 
-            {{-- Esošo atsauksmju saraksts --}}
             <div class="space-y-4">
                 @forelse($resort->reviews as $review)
                     <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative group">
@@ -87,7 +91,6 @@
                                 </span>
                             </div>
 
-                            {{-- Dzēšanas poga --}}
                             @if(auth()->check() && (auth()->id() === $review->user_id || auth()->user()->role === 'admin'))
                                 <form action="{{ route('reviews.destroy', $review) }}" method="POST">
                                     @csrf

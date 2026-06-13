@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Resort;
+use Illuminate\Support\Facades\Storage;
+use App\Services\AuditLogger;
 
 
 class AdminResortController extends Controller
@@ -35,15 +37,22 @@ class AdminResortController extends Controller
      */
     public function store(Request $request)
     {
-        Resort::create(
-            $request->validate([
-                'country_id' => 'required|exists:countries,id',
-                'name' => 'required|string|max:255',
-                'description' => 'required',
-            ])
-        );
+        $validated = $request->validate([
+            'country_id' => 'required|exists:countries,id',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
 
-        return redirect()->route('admin.resorts.index')->with('success', 'Resort created successfully!');;
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('resorts', 'public');
+        }
+
+        Resort::create($validated);
+
+        return redirect()
+            ->route('admin.resorts.index')
+            ->with('success', 'Resort created successfully!');
     }
 
     /**
@@ -71,12 +80,23 @@ class AdminResortController extends Controller
         $validated = $request->validate([
             'country_id' => 'required|exists:countries,id',
             'name' => 'required|string|max:255',
-            'description' => 'required',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            if ($resort->image) {
+                Storage::disk('public')->delete($resort->image);
+            }
+
+            $validated['image'] = $request->file('image')->store('resorts', 'public');
+        }
 
         $resort->update($validated);
 
-        return redirect()->route('admin.resorts.index')->with('success', 'Resort updated successfully!');
+        return redirect()
+            ->route('admin.resorts.index')
+            ->with('success', 'Resort updated successfully!');
     }
 
     /**
