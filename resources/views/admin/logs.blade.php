@@ -6,15 +6,15 @@
 
         <div class="mb-6">
             <a href="{{ route('admin.resorts.index') }}" class="text-sm font-semibold text-indigo-600 hover:underline">
-                &larr; Back to Admin Panel
+                &larr; {{ __('messages.back_to_admin') }}
             </a>
 
             <h1 class="text-3xl font-extrabold text-slate-950 mt-2">
-                Audit Logs
+                {{ __('messages.audit_logs') }}
             </h1>
 
             <p class="text-slate-500 mt-1">
-                System record of important user actions.
+                {{ __('messages.audit_logs_description') }}
             </p>
         </div>
 
@@ -22,10 +22,10 @@
             <table class="w-full text-sm">
                 <thead class="bg-slate-100 text-slate-700">
                     <tr>
-                        <th class="text-left px-4 py-3 font-semibold">User</th>
-                        <th class="text-left px-4 py-3 font-semibold">Action</th>
-                        <th class="text-left px-4 py-3 font-semibold">Description</th>
-                        <th class="text-left px-4 py-3 font-semibold">Date</th>
+                        <th class="text-left px-4 py-3 font-semibold">{{ __('messages.user') }}</th>
+                        <th class="text-left px-4 py-3 font-semibold">{{ __('messages.action') }}</th>
+                        <th class="text-left px-4 py-3 font-semibold">{{ __('messages.description') }}</th>
+                        <th class="text-left px-4 py-3 font-semibold">{{ __('messages.date') }}</th>
                     </tr>
                 </thead>
 
@@ -33,7 +33,7 @@
                     @forelse($logs as $log)
                         <tr>
                             <td class="px-4 py-3 text-slate-700">
-                                {{ $log->user->name ?? 'System / Deleted User' }}
+                                {{ $log->user->name ?? __('messages.system_deleted_user') }}
                             </td>
 
                             <td class="px-4 py-3">
@@ -53,7 +53,7 @@
                     @empty
                         <tr>
                             <td colspan="4" class="px-4 py-6 text-center text-slate-500">
-                                No audit logs yet.
+                                {{ $log->user->name ?? __('messages.system_deleted_user') }}
                             </td>
                         </tr>
                     @endforelse

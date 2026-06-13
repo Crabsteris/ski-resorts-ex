@@ -17,7 +17,9 @@ class AdminResortController extends Controller
      */
     public function index()
     {
-        $resorts = Resort::with('country')->get();
+        $resorts = Resort::with('country')
+            ->latest()
+            ->get();
 
         return view('admin.resorts.index', compact('resorts'));
     }
@@ -116,19 +118,40 @@ class AdminResortController extends Controller
     {
         $resortName = $resort->name;
 
-        if ($resort->image) {
-            Storage::disk('public')->delete($resort->image);
-        }
-
         $resort->delete();
 
         AuditLogger::log(
             'delete_resort',
-            'Deleted resort: ' . $resortName
+            'Soft deleted resort: ' . $resortName
         );
 
         return redirect()
             ->route('admin.resorts.index')
-            ->with('success', 'Resort deleted successfully!');
+            ->with('success', 'Resort moved to trash successfully!');
+    }
+    public function trash()
+    {
+        $resorts = Resort::onlyTrashed()
+            ->with('country')
+            ->latest('deleted_at')
+            ->get();
+
+        return view('admin.resorts.trash', compact('resorts'));
+    }
+    public function restore($id)
+    {
+        $resort = Resort::onlyTrashed()
+            ->findOrFail($id);
+
+        $resort->restore();
+
+        AuditLogger::log(
+            'restore_resort',
+            'Restored resort: ' . $resort->name
+        );
+
+        return redirect()
+            ->route('admin.resorts.trash')
+            ->with('success', 'Resort restored successfully!');
     }
 }

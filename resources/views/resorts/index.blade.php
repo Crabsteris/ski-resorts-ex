@@ -13,10 +13,10 @@ use Illuminate\Support\Str;
         
         <div class="border-b border-slate-200 pb-5 mb-8">
             <h1 class="text-3xl font-extrabold text-slate-950 tracking-tight">
-                Slēpošanas kūrorti
+                {{ __('messages.resorts') }}
             </h1>
             <p class="text-slate-500 mt-1">
-                Atklāj labākos ziemas galamērķus un trases
+                {{ __('messages.discover_best_destinations') }}
             </p>
         </div>
 
@@ -40,7 +40,7 @@ use Illuminate\Support\Str;
                     <div class="flex flex-col flex-grow">
 
                         <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
-                             {{ $resort->country->name ?? 'Nav valsts' }}
+                             {{ $resort->country->name ?? __('messages.no_country') }}
                         </span>
 
                         <h2 class="text-lg font-bold text-slate-900 mb-2">
@@ -54,7 +54,7 @@ use Illuminate\Support\Str;
 
                         <a href="{{ route('resorts.show', $resort) }}"
                            class="block w-full text-center bg-slate-900 hover:bg-indigo-600 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 text-sm">
-                            Skatīt detaļas
+                            {{ __('messages.view_details') }}
                         </a>
                     </div>
 

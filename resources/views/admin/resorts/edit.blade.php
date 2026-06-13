@@ -6,10 +6,10 @@
 
         <div class="mb-6">
             <a href="{{ route('admin.resorts.index') }}" class="text-sm font-semibold text-indigo-600 hover:underline">
-                &larr; Back to Admin Panel
+                &larr; {{ __('messages.back_to_admin') }}
             </a>
             <h1 class="text-3xl font-extrabold text-slate-950 mt-2">
-                Edit Resort: {{ $resort->name }}
+                {{ __('messages.edit_resort') }}: {{ $resort->name }}
             </h1>
         </div>
 
@@ -19,7 +19,7 @@
                 @method('PUT')
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Country</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('messages.country') }}</label>
                     <select name="country_id" class="bg-white border border-slate-300 text-slate-900 rounded-xl p-2.5 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                         @foreach($countries as $country)
                             <option value="{{ $country->id }}" {{ old('country_id', $resort->country_id) == $country->id ? 'selected' : '' }}>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Resort Name</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('messages.resort_name') }}</label>
                     <input type="text" name="name" value="{{ old('name', $resort->name) }}"
                            class="bg-white border border-slate-300 text-slate-900 rounded-xl p-2.5 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                     @error('name')
@@ -42,7 +42,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Description</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('messages.description') }}</label>
                     <textarea name="description" rows="5" 
                               class="bg-white border border-slate-300 text-slate-900 rounded-xl p-3 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">{{ old('description', $resort->description) }}</textarea>
                     @error('description')
@@ -50,7 +50,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Resort Image</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">{{ __('messages.resort_image') }}</label>
 
                     @if($resort->image)
                         <div class="mb-3">
@@ -69,10 +69,10 @@
                 </div>
                 <div class="flex items-center space-x-3 pt-2">
                     <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors duration-200 text-sm shadow-sm">
-                        Update Resort
+                        {{ __('messages.update_resort') }}
                     </button>
                     <a href="{{ route('admin.resorts.index') }}" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-6 rounded-xl transition-colors duration-200 text-sm border border-slate-200">
-                        Cancel
+                        {{ __('messages.cancel') }}
                     </a>
                 </div>
             </form>

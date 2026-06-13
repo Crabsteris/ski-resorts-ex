@@ -8,6 +8,15 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminResortController;
 use App\Http\Controllers\AuditLogController;
+use Illuminate\Support\Facades\Session;
+
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'lv'])) {
+        Session::put('locale', $locale);
+    }
+
+    return back();
+})->name('language.switch');
 
 // Public routes
 Route::get('/', [ResortController::class, 'index'])->name('resorts.index');
