@@ -46,12 +46,17 @@
                             <div class="h-5 w-px bg-slate-700"></div>
 
                             <a href="{{ route('admin.resorts.index') }}"
-                               class="text-yellow-300 hover:text-yellow-200 transition-colors duration-200">
+                            class="text-yellow-300 hover:text-yellow-200 transition-colors duration-200">
                                 {{ __('messages.admin') }}
                             </a>
 
+                            <a href="{{ route('admin.resorts.trash') }}"
+                            class="text-yellow-300 hover:text-yellow-200 transition-colors duration-200">
+                                {{ __('messages.trash') }}
+                            </a>
+
                             <a href="{{ route('admin.logs') }}"
-                               class="text-yellow-300 hover:text-yellow-200 transition-colors duration-200">
+                            class="text-yellow-300 hover:text-yellow-200 transition-colors duration-200">
                                 {{ __('messages.logs') }}
                             </a>
                         @endif

@@ -101,4 +101,10 @@ return [
     'welcome_title' => 'Welcome to Ski Resorts',
     'welcome_description' => 'Discover ski resorts, write reviews, and save your favourite destinations.',
     'get_started' => 'Get Started',
+
+    'trash' => 'Trash',
+    'deleted_resorts' => 'Deleted Resorts',
+    'deleted_resorts_description' => 'Restore resorts that were previously deleted.',
+    'restore' => 'Restore',
+    'no_deleted_resorts' => 'No deleted resorts.',
 ];

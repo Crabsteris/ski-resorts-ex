@@ -17,10 +17,17 @@
                 <h1 class="text-3xl font-extrabold text-slate-950">{{ __('messages.manage_resorts') }}</h1>
                 <p class="text-slate-500 text-sm mt-1">{{ __('messages.manage_resorts_description') }}</p>
             </div>
-            <a href="{{ route('admin.resorts.create') }}" 
-               class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-5 rounded-xl transition-colors duration-200 text-sm shadow-sm whitespace-nowrap">
-                + {{ __('messages.add_new_resort') }}
-            </a>
+            <div class="flex flex-wrap gap-3">
+                <a href="{{ route('admin.resorts.trash') }}" 
+                class="inline-flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-5 rounded-xl transition-colors duration-200 text-sm border border-slate-200 whitespace-nowrap">
+                    🗑️ {{ __('messages.trash') ?? 'Trash' }}
+                </a>
+
+                <a href="{{ route('admin.resorts.create') }}" 
+                class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-5 rounded-xl transition-colors duration-200 text-sm shadow-sm whitespace-nowrap">
+                    + {{ __('messages.add_new_resort') }}
+                </a>
+            </div>
         </div>
 
         {{-- Kūrortu tabula --}}

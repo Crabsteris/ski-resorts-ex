@@ -101,4 +101,10 @@ return [
     'welcome_title' => 'Laipni lūgts slēpošanas kūrortu vietnē',
     'welcome_description' => 'Atklāj slēpošanas kūrortus, raksti atsauksmes un saglabā iecienītākos galamērķus.',
     'get_started' => 'Sākt',
+
+    'trash' => 'Miskaste',
+    'deleted_resorts' => 'Dzēstie kūrorti',
+    'deleted_resorts_description' => 'Atjauno kūrortus, kas iepriekš tika dzēsti.',
+    'restore' => 'Atjaunot',
+    'no_deleted_resorts' => 'Nav dzēstu kūrortu.',
 ];

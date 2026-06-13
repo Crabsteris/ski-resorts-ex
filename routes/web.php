@@ -46,15 +46,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Adminss
     Route::middleware(['admin'])
-        ->prefix('admin')
-        ->name('admin.')
-        ->group(function () {
-            Route::get('logs', [AuditLogController::class, 'index'])->name('logs');
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('logs', [AuditLogController::class, 'index'])->name('logs');
 
-            Route::get('resorts/create', [AdminResortController::class, 'create'])->name('resorts.create');
-            Route::post('resorts', [AdminResortController::class, 'store'])->name('resorts.store');
-            Route::resource('resorts', AdminResortController::class)->except(['create', 'store']);
-        });
+        Route::get('resorts-trash', [AdminResortController::class, 'trash'])
+            ->name('resorts.trash');
+
+        Route::post('resorts/{id}/restore', [AdminResortController::class, 'restore'])
+            ->name('resorts.restore');
+
+        Route::get('resorts/create', [AdminResortController::class, 'create'])->name('resorts.create');
+        Route::post('resorts', [AdminResortController::class, 'store'])->name('resorts.store');
+        Route::resource('resorts', AdminResortController::class)->except(['create', 'store']);
+    });
 });
 
 require __DIR__.'/auth.php';
