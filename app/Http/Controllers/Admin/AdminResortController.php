@@ -48,7 +48,12 @@ class AdminResortController extends Controller
             $validated['image'] = $request->file('image')->store('resorts', 'public');
         }
 
-        Resort::create($validated);
+        $resort = Resort::create($validated);
+
+        AuditLogger::log(
+            'create_resort',
+            'Created resort: ' . $resort->name
+        );
 
         return redirect()
             ->route('admin.resorts.index')
@@ -94,6 +99,11 @@ class AdminResortController extends Controller
 
         $resort->update($validated);
 
+        AuditLogger::log(
+            'update_resort',
+            'Updated resort: ' . $resort->name
+        );
+
         return redirect()
             ->route('admin.resorts.index')
             ->with('success', 'Resort updated successfully!');
@@ -104,8 +114,21 @@ class AdminResortController extends Controller
      */
     public function destroy(Resort $resort)
     {
+        $resortName = $resort->name;
+
+        if ($resort->image) {
+            Storage::disk('public')->delete($resort->image);
+        }
+
         $resort->delete();
 
-        return redirect()->route('admin.resorts.index')->with('success', 'Resort deleted successfully!');
+        AuditLogger::log(
+            'delete_resort',
+            'Deleted resort: ' . $resortName
+        );
+
+        return redirect()
+            ->route('admin.resorts.index')
+            ->with('success', 'Resort deleted successfully!');
     }
 }

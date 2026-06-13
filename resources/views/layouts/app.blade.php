@@ -41,6 +41,9 @@
                 <a href="{{ route('admin.resorts.index') }}" class="text-slate-300 hover:text-yellow-400 transition-colors duration-200">
                     Admin
                 </a>
+                <a href="{{ route('admin.logs') }}" class="text-slate-300 hover:text-yellow-400 transition-colors duration-200">
+                    Logs
+                </a>
                 @endif
                 
                 <form action="{{ route('logout') }}" method="POST" class="inline m-0 p-0">

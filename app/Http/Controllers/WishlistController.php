@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use App\Services\AuditLogger;
 
 class WishlistController extends Controller
 {
@@ -22,6 +23,10 @@ class WishlistController extends Controller
             'user_id' => auth()->id(),
             'resort_id' => $request->resort_id,
         ]);
+        AuditLogger::log(
+            'add_wishlist',
+            'Added a resort to wishlist'
+        );
 
         return back();
     }
@@ -34,6 +39,10 @@ class WishlistController extends Controller
 
         $wishlist->delete();
 
+        AuditLogger::log(
+            'remove_wishlist',
+            'Removed a resort from wishlist'
+        );
         return back();
     }
 }

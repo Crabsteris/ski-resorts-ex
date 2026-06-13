@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class AuditLog extends Model
 {
@@ -10,7 +11,7 @@ class AuditLog extends Model
     protected $fillable = [
         'user_id',
         'action',
-        'description'
+        'description',
     ];
 
     public function user()

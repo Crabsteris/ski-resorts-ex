@@ -7,6 +7,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminResortController;
+use App\Http\Controllers\AuditLogController;
 
 // Public routes
 Route::get('/', [ResortController::class, 'index'])->name('resorts.index');
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->prefix('admin')
         ->name('admin.')
         ->group(function () {
+            Route::get('logs', [AuditLogController::class, 'index'])->name('logs');
+
             Route::get('resorts/create', [AdminResortController::class, 'create'])->name('resorts.create');
             Route::post('resorts', [AdminResortController::class, 'store'])->name('resorts.store');
             Route::resource('resorts', AdminResortController::class)->except(['create', 'store']);

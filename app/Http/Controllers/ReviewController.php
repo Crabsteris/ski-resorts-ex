@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Services\AuditLogger;
 
 class ReviewController extends Controller
 {
@@ -22,6 +23,10 @@ class ReviewController extends Controller
             'rating' => $validated['rating'],
             'comment' => $validated['comment'],
         ]);
+        AuditLogger::log(
+            'create_review',
+            'Added a review'
+        );
 
         return back()->with('success', 'Review added.');
     }
@@ -36,6 +41,10 @@ class ReviewController extends Controller
         }
 
         $review->delete();
+        AuditLogger::log(
+            'delete_review',
+            'Deleted a review'
+        );
 
         return back()->with('success', 'Review deleted.');
     }
