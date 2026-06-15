@@ -67,6 +67,42 @@
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            {{ __('messages.latitude') }}
+                        </label>
+
+                        <input type="number"
+                            step="0.0000001"
+                            name="latitude"
+                            value="{{ old('latitude') }}"
+                            placeholder="46.0207"
+                            class="bg-white border border-slate-300 text-slate-900 rounded-xl p-2.5 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+
+                        @error('latitude')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            {{ __('messages.longitude') }}
+                        </label>
+
+                        <input type="number"
+                            step="0.0000001"
+                            name="longitude"
+                            value="{{ old('longitude') }}"
+                            placeholder="7.7491"
+                            class="bg-white border border-slate-300 text-slate-900 rounded-xl p-2.5 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+
+                        @error('longitude')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
                 <div class="flex items-center space-x-3 pt-2">
                     <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors duration-200 text-sm shadow-sm">
                         {{ __('messages.update_resort') }}

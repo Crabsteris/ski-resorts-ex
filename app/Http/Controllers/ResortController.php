@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Resort;
 use App\Models\Country;
+use App\Services\WeatherService;
 
 class ResortController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Resort::select('id', 'country_id', 'name', 'description', 'image')
+        $query = Resort::select('id', 'country_id', 'name', 'description', 'image', 'latitude', 'longitude')
             ->with('country:id,name');
 
         if ($request->filled('search')) {
@@ -38,6 +39,11 @@ class ResortController extends Controller
             'reviews.user'
         ]);
 
-        return view('resorts.show', compact('resort'));
+        $weather = WeatherService::getCurrentWeather(
+            $resort->latitude,
+            $resort->longitude
+        );
+
+        return view('resorts.show', compact('resort', 'weather'));
     }
 }

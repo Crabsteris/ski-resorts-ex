@@ -115,7 +115,17 @@ return [
     'clear' => 'Clear',
     'no_resorts_match' => 'No resorts match your search or filter.',
 
-
+    'live_weather' => 'Live Weather',
+    'temperature' => 'Temperature',
+    'wind_speed' => 'Wind Speed',
+    'precipitation' => 'Precipitation',
+    'humidity' => 'Humidity',
+    'conditions' => 'Conditions',
+    'updated_at' => 'Updated at',
+    'weather_source' => 'Weather data provided by Open-Meteo.',
+    'weather_unavailable' => 'Weather data is currently unavailable for this resort.',
+    'latitude' => 'Latitude',
+    'longitude' => 'Longitude',
 
 
 

@@ -41,6 +41,78 @@
             </p>
         </div>
 
+        <div class="mt-6 border-t border-slate-200 pt-6">
+            <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                🌤️ {{ __('messages.live_weather') ?? 'Live Weather' }}
+            </h2>
+
+            @if($weather)
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                            {{ __('messages.temperature') ?? 'Temperature' }}
+                        </p>
+                        <p class="text-2xl font-extrabold text-slate-950 mt-1">
+                            {{ $weather['temperature'] }} {{ $weather['temperature_unit'] }}
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                            {{ __('messages.wind_speed') ?? 'Wind Speed' }}
+                        </p>
+                        <p class="text-2xl font-extrabold text-slate-950 mt-1">
+                            {{ $weather['wind_speed'] }} {{ $weather['wind_speed_unit'] }}
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                            {{ __('messages.precipitation') ?? 'Precipitation' }}
+                        </p>
+                        <p class="text-2xl font-extrabold text-slate-950 mt-1">
+                            {{ $weather['precipitation'] }} {{ $weather['precipitation_unit'] }}
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                            {{ __('messages.humidity') ?? 'Humidity' }}
+                        </p>
+                        <p class="text-2xl font-extrabold text-slate-950 mt-1">
+                            {{ $weather['humidity'] }} {{ $weather['humidity_unit'] }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-sm text-slate-500">
+                    <p>
+                        <span class="font-semibold text-slate-700">
+                            {{ __('messages.conditions') ?? 'Conditions' }}:
+                        </span>
+                        {{ $weather['description'] }}
+                    </p>
+
+                    @if($weather['time'])
+                        <p>
+                            <span class="font-semibold text-slate-700">
+                                {{ __('messages.updated_at') ?? 'Updated at' }}:
+                            </span>
+                            {{ $weather['time'] }}
+                        </p>
+                    @endif
+                </div>
+
+                <p class="text-xs text-slate-400 mt-3">
+                    {{ __('messages.weather_source') ?? 'Weather data provided by Open-Meteo.' }}
+                </p>
+            @else
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-slate-500 text-sm">
+                    {{ __('messages.weather_unavailable') ?? 'Weather data is currently unavailable for this resort.' }}
+                </div>
+            @endif
+        </div>
+
         <div class="border-t border-slate-200 pt-8">
             <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                 {{ __('messages.reviews') }} ({{ $resort->reviews->count() }})

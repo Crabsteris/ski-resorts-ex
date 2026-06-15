@@ -15,7 +15,9 @@ class Resort extends Model
         'country_id',
         'name',
         'description',
-        'image'
+        'image',
+        'latitude',
+        'longitude',
     ];
 
     public function country()

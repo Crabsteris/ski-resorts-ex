@@ -116,7 +116,17 @@ return [
     'no_resorts_match' => 'Nav kūrortu, kas atbilst meklēšanai vai filtram.',
 
 
-
+    'live_weather' => 'Tiešsaistes laikapstākļi',
+    'temperature' => 'Temperatūra',
+    'wind_speed' => 'Vēja ātrums',
+    'precipitation' => 'Nokrišņi',
+    'humidity' => 'Mitrums',
+    'conditions' => 'Apstākļi',
+    'updated_at' => 'Atjaunināts',
+    'weather_source' => 'Laikapstākļu dati nodrošināti ar Open-Meteo.',
+    'weather_unavailable' => 'Laikapstākļu dati šim kūrortam pašlaik nav pieejami.',
+    'latitude' => 'Platums',
+    'longitude' => 'Garums',
 
 
     ];
