@@ -19,7 +19,6 @@ use Illuminate\Support\Str;
             </p>
         </div>
 
-        {{-- Search and filter form --}}
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 mb-8">
             <form method="GET" action="{{ route('resorts.index', [], false) }}" class="grid md:grid-cols-4 gap-4 items-end">
 
@@ -62,7 +61,7 @@ use Illuminate\Support\Str;
                         {{ __('messages.filter') ?? 'Filter' }}
                     </button>
 
-                    <a href="{{ route('resorts.index') }}"
+                    <a href="{{ route('resorts.index', [], false) }}"
                        class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-4 rounded-xl transition-colors duration-200 text-sm border border-slate-200">
                         {{ __('messages.clear') ?? 'Clear' }}
                     </a>
@@ -71,7 +70,6 @@ use Illuminate\Support\Str;
             </form>
         </div>
 
-        {{-- Resort grid --}}
         <div class="grid md:grid-cols-3 gap-6">
 
             @forelse($resorts as $resort)
@@ -80,7 +78,15 @@ use Illuminate\Support\Str;
                             hover:-translate-y-1 hover:shadow-md flex flex-col">
 
                     <div class="h-44 rounded-lg overflow-hidden bg-slate-100 mb-4">
-                        <img src="{{ $resort->image ? asset('storage/' . $resort->image) : asset('images/default-resort.jpg') }}"
+                        @php
+                            $hasImage = $resort->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($resort->image);
+
+                            $imagePath = $hasImage
+                                ? asset('storage/' . $resort->image)
+                                : asset('images/default-resort.jpg');
+                        @endphp
+
+                        <img src="{{ $imagePath }}"
                              alt="{{ $resort->name }}"
                              loading="lazy"
                              class="w-full h-full object-cover">

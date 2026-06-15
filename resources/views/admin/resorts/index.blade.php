@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        {{-- Kūrortu tabula --}}
+        
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse text-left text-sm text-slate-600">
