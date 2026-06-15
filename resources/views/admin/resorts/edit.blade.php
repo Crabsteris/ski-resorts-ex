@@ -77,7 +77,7 @@
                         <input type="number"
                             step="0.0000001"
                             name="latitude"
-                            value="{{ old('latitude') }}"
+                            value="{{ old('latitude', $resort->latitude) }}"
                             placeholder="46.0207"
                             class="bg-white border border-slate-300 text-slate-900 rounded-xl p-2.5 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
 
@@ -94,7 +94,7 @@
                         <input type="number"
                             step="0.0000001"
                             name="longitude"
-                            value="{{ old('longitude') }}"
+                            value="{{ old('longitude', $resort->longitude) }}"
                             placeholder="7.7491"
                             class="bg-white border border-slate-300 text-slate-900 rounded-xl p-2.5 w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
 

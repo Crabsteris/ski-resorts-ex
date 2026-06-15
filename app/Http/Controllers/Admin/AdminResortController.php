@@ -95,6 +95,14 @@ class AdminResortController extends Controller
             'longitude' => 'nullable|numeric|between:-180,180',
         ]);
 
+        if (! $request->filled('latitude')) {
+            unset($validated['latitude']);
+        }
+
+        if (! $request->filled('longitude')) {
+            unset($validated['longitude']);
+        }
+
         if ($request->hasFile('image')) {
             if ($resort->image) {
                 Storage::disk('public')->delete($resort->image);
