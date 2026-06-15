@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
 
         {{-- Search and filter form --}}
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 mb-8">
-            <form method="GET" action="{{ route('resorts.index') }}" class="grid md:grid-cols-4 gap-4 items-end">
+            <form method="GET" action="{{ route('resorts.index', [], false) }}" class="grid md:grid-cols-4 gap-4 items-end">
 
                 <div class="md:col-span-2">
                     <label for="search" class="block text-sm font-semibold text-slate-700 mb-1">
